@@ -1,0 +1,8 @@
+[user]
+	name = Spiss, Lukas
+	email = lukas.spiss@scandio.de
+[alias]
+	lol = log --all --decorate --graph --oneline
+	lol2 = log --all --decorate --graph --pretty=format:"%h%x09%an%x09%ad%x09%s" 
+[core]
+	excludesfile = ~/.gitignore

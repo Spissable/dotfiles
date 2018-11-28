@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $# -gt 0 ] 
+then
+  git branch --merged "$1" | grep -v "\* $1" | xargs -n 1 git branch -d
+else
+  echo Usage: provide origin as 1st argument
+fi
