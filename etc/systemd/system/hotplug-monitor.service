@@ -1,0 +1,6 @@
+[Unit]
+ Description=Hotplug monitor
+
+[Service]
+ Type=simple
+ ExecStart=/home/lukas/Scripts/monitor.sh
