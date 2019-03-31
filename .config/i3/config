@@ -20,7 +20,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+q kill
 
 # start program launcher
-bindsym $mod+space exec --no-startup-id rofi -show drun
+bindsym $mod+space exec --no-startup-id rofi -show drun -width 20 -lines 1 -location 2 -yoffset 200
 
 # change focus
 bindsym $mod+j focus left
@@ -47,7 +47,6 @@ bindsym $mod+Shift+Right move right
 # workspace back and forth (with/without active container)
 workspace_auto_back_and_forth yes
 bindsym $mod+b workspace back_and_forth
-bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # split orientation
 bindsym $mod+h split h;exec notify-send 'tile horizontally'
@@ -82,8 +81,10 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # navigate workspaces next / previous
-bindsym $mod+Ctrl+Right workspace next
-bindsym $mod+Ctrl+Left workspace prev
+# bindsym $mod+Ctrl+Right workspace next
+# bindsym $mod+Ctrl+Left workspace prev
+bindsym button6 workspace next
+bindsym --release $mod+button7 workspace prev
 
 # workspaces
 set $ws1 1
@@ -142,6 +143,7 @@ for_window [class="Gnome-calendar"] floating enable border pixel 1
 for_window [class="Docky"] floating enable
 for_window [class="(?i)postman"] floating enable
 for_window [class="(?i)shutter"] floating enable
+for_window [class="(?i)simplenote"] floating enable
 for_window [class="(?i)virtualbox"] floating enable border normal
 
 # reload the configuration file
@@ -203,8 +205,7 @@ exec_always --no-startup-id fix_xcursor
 
 bar {
   #tray_output DP-2
-  i3bar_command /$HOME/.config/polybar/i3wmthemer_bar_launch.sh
-  #i3bar_command i3bar
+  i3bar_command $HOME/.config/polybar/polybar.sh hdpi_bar
 }
 
 # Theme colors
@@ -263,12 +264,15 @@ mode "$mode_gaps_outer" {
 exec --no-startup-id xinput set-prop "DELL07E6:00 06CB:76AF Touchpad" "libinput Tapping Enabled" 1
 exec --no-startup-id xinput set-prop "DELL07E6:00 06CB:76AF Touchpad" "libinput Natural Scrolling Enabled" 1
 
+# exec --no-startup-id env QT_AUTO_SCREEN_SCALE_FACTOR=0 albert
+exec --no-startup-id copyq
+
 # assigns
 assign [class="(?)Firefox"] 1
 assign [class="(?)Google-chrome"] 1
 
 assign [class="(?)Code" window_role="browser-window"] 2
-assign [class="jetbrains-idea"] 2
+assign [class="jetbrains-idea" window_type="normal"] 2
 
 assign [class="terminal"] 3
 
@@ -286,33 +290,5 @@ bindsym $mod+e exec --no-startup-id nautilus
 bindsym $mod+Tab exec --no-startup-id rofi -show window
 
 # gnome
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-a11y-settings
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-backlight-helper
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-clipboard
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-color
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-datetime
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-dummy
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-housekeeping
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-keyboard
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-locate-pointer
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-media-keys
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-mouse
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-power
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-printer
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-print-notifications
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-rfkill
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-screensaver-proxy
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-sharing
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-smartcard
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-sound
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-test-input-helper
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-wacom
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-wacom-led-helper
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-wacom-oled-helper
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
-
-# xrandr
-bindsym $Mod+Ctrl+a exec --no-startup-id xrandr --output eDP-1 --auto
-bindsym $Mod+Ctrl+o exec --no-startup-id xrandr --output eDP-1 --off
-bindsym $mod+Ctrl+r exec --no-startup-id xrandr --output eDP-1 --auto --right-of DP-1
-bindsym $mod+Ctrl+l exec --no-startup-id xrandr --output eDP-1 --auto --left-of DP-1
+exec --no-startup-id /usr/lib/gsd-xsettings
+exec --no-startup-id gnome-flashback
