@@ -41,6 +41,19 @@ size = 13.0
 
 [font.normal]
 family = "Monaspace Neon Var"
+style = "Regular"
+
+[font.bold]
+family = "Monaspace Neon Var"
+style = "Bold"
+
+[font.italic]
+family = "Monaspace Neon Var"
+style = "Italic"
+
+[font.bold_italic]
+family = "Monaspace Neon Var"
+style = "Bold Italic"
 
 [window]
 opacity = 0.9
